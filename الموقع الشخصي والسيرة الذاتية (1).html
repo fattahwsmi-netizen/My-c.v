@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محمد عبد الفتاح | خبير إدارة العمليات والخدمات الطبية والجودة</title>
+    
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            dark: '#0B132B',
+                            card: '#1C2541',
+                            accent: '#3A506B',
+                            gold: '#F59E0B',
+                            teal: '#00B4D8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glow-emerald': '0 0 25px rgba(16, 185, 129, 0.35)',
+                        'glow-teal': '0 0 25px rgba(0, 180, 216, 0.35)',
+                        'card-glow': '0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 15px rgba(16, 185, 129, 0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS for specialized animations -->
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #070D1D;
+            color: #F3F4F6;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism background */
+        .glass-panel {
+            background: rgba(28, 37, 65, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-nav {
+            background: rgba(11, 19, 43, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #10B981 0%, #00B4D8 50%, #3B82F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-gold-text {
+            background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animated Glowing Avatar Border */
+        .glowing-avatar {
+            position: relative;
+            border-radius: 9999px;
+            padding: 4px;
+            background: linear-gradient(45deg, #10b981, #00b4d8, #6366f1, #10b981);
+            background-size: 300% 300%;
+            animation: borderGlow 6s ease infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Progress Bar Animation */
+        .progress-line {
+            height: 100%;
+            border-radius: 9999px;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(90deg, #10B981, #00B4D8);
+        }
+
+        /* Dynamic Timeline Line */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            right: 23px;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(180deg, #10B981 0%, #00B4D8 50%, rgba(59, 130, 246, 0.1) 100%);
+        }
+
+        @media (min-width: 768px) {
+            .timeline-container::before {
+                right: 50%;
+                transform: translateX(50%);
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070D1D;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1C2541;
+            border-radius: 4px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #10B981;
+        }
+
+        /* Toast notification */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            transform: translateY(100px);
+            transition: all 0.3s ease-in-out;
+        }
+        #toast.show {
+            visibility: visible;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-200 pb-20 md:pb-0">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-24 right-5 z-50 glass-panel border border-brand-500/30 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 space-x-reverse">
+        <i class="fa-solid fa-circle-check text-brand-500 text-xl"></i>
+        <span id="toast-message" class="text-sm font-medium">تم نسخ النص بنجاح!</span>
+    </div>
+
+    <!-- Top Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo / Brand Name -->
+                <a href="#hero" class="flex items-center space-x-3 space-x-reverse group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-500 to-brand-teal flex items-center justify-center text-white font-bold text-lg shadow-glow-emerald group-hover:scale-105 transition-transform">
+                        م
+                    </div>
+                    <div>
+                        <span class="text-lg font-bold text-white tracking-wide block leading-tight">محمد عبد الفتاح</span>
+                        <span class="text-xs text-brand-500 font-medium">Healthcare Ops Expert</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8 space-x-reverse">
+                    <a href="#about" class="text-sm font-medium text-gray-300 hover:text-brand-500 transition-colors">عن الخبير</a>
+                    <a href="#experience" class="text-sm font-medium text-gray-300 hover:text-brand-500 transition-colors">الخبرات العملية</a>
+                    <a href="#skills" class="text-sm font-medium text-gray-300 hover:text-brand-500 transition-colors">المهارات التقنية</a>
+                    <a href="#projects" class="text-sm font-medium text-gray-300 hover:text-brand-500 transition-colors">مشاريع النجاح</a>
+                    <a href="#education" class="text-sm font-medium text-gray-300 hover:text-brand-500 transition-colors"> المؤهلات والجودة</a>
+                    <a href="#contact" class="text-sm font-medium text-gray-300 hover:text-brand-500 transition-colors">التواصل</a>
+                </nav>
+
+                <!-- Action Button Desktop -->
+                <div class="hidden md:flex items-center space-x-4 space-x-reverse">
+                    <a href="#contact" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-500 to-brand-teal text-white font-bold text-sm shadow-glow-emerald hover:opacity-95 transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-paper-plane ml-2"></i>تواصل مباشر
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" type="button" class="text-gray-300 hover:text-white focus:outline-none p-2 rounded-lg" aria-label="Toggle menu">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-gray-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-brand-card hover:text-brand-500">عن الخبير</a>
+            <a href="#experience" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-brand-card hover:text-brand-500">الخبرات العملية</a>
+            <a href="#skills" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-brand-card hover:text-brand-500">المهارات التقنية</a>
+            <a href="#projects" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-brand-card hover:text-brand-500">مشاريع النجاح</a>
+            <a href="#education" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-brand-card hover:text-brand-500">المؤهلات والجودة</a>
+            <a href="#contact" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-brand-card hover:text-brand-500">التواصل</a>
+        </div>
+    </header>
+
+    <!-- Main Hero Section -->
+    <section id="hero" class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden flex items-center min-h-screen">
+        <!-- Background Glowing Orbs -->
+        <div class="absolute top-1/4 right-10 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 left-10 w-96 h-96 bg-brand-teal/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Content / Text -->
+                <div class="lg:col-span-7 text-center lg:text-right space-y-6">
+                    
+                    <div class="inline-flex items-center space-x-2 space-x-reverse px-4 py-2 rounded-full glass-panel border-brand-500/30 text-brand-500 text-sm font-semibold mb-2 animate-pulse">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-500 inline-block"></span>
+                        <span>متاح للمناصب القيادية والاستشارات الإدارية</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+                        أنا <span class="gradient-text">محمد عبد الفتاح</span>
+                        <span class="block text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-300 mt-3">
+                            مدير الإدارة العامة وخبير تشغيل المستشفيات والجودة
+                        </span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+                        خبير إدارة العمليات والخدمات الطبية والتأهيل للجودة القياسية (<span class="text-brand-teal font-medium">JCI & IMS Euro Cert</span>) بخبرة تتجاوز <span class="text-brand-500 font-bold">15 عاماً</span> في كبرى المستشفيات والمراكز الطبية بمصر. متخصص في تطوير منظومات سكرتارية الأقسام الداخلية ورفع الكفاءة التشغيلية بنسبة مثبتة رقمياً.
+                    </p>
+
+                    <!-- Quick Highlights Badges -->
+                    <div class="pt-2 flex flex-wrap justify-center lg:justify-start gap-3">
+                        <span class="px-3 py-1.5 rounded-lg glass-panel text-xs font-medium text-gray-300 border border-white/5">
+                            <i class="fa-solid fa-hospital text-brand-500 ml-1.5"></i>مستشفى بهية
+                        </span>
+                        <span class="px-3 py-1.5 rounded-lg glass-panel text-xs font-medium text-gray-300 border border-white/5">
+                            <i class="fa-solid fa-award text-brand-gold ml-1.5"></i>تأهيل JCI و IMS
+                        </span>
+                        <span class="px-3 py-1.5 rounded-lg glass-panel text-xs font-medium text-gray-300 border border-white/5">
+                            <i class="fa-solid fa-users-gear text-brand-teal ml-1.5"></i>إدارة وتوجيه الفرق
+                        </span>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="pt-6 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-500 to-brand-teal text-white font-bold text-center shadow-glow-emerald hover:scale-105 transition-all">
+                            <i class="fa-solid fa-calendar-check ml-2"></i>تواصل لحجز موعد
+                        </a>
+                        <button onclick="downloadCV()" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel text-white font-bold border border-white/10 hover:border-brand-500/50 hover:bg-brand-card transition-all flex items-center justify-center">
+                            <i class="fa-solid fa-download ml-2 text-brand-500"></i>تحميل السيرة الذاتية (PDF)
+                        </button>
+                    </div>
+
+                    <!-- Direct Contact Quick Icons -->
+                    <div class="pt-6 flex items-center justify-center lg:justify-start space-x-6 space-x-reverse text-gray-400">
+                        <a href="tel:01151495701" class="hover:text-brand-500 transition-colors text-xl p-2" title="اتصل بي">
+                            <i class="fa-solid fa-phone"></i>
+                        </a>
+                        <a href="https://wa.me/201151495701" target="_blank" class="hover:text-brand-500 transition-colors text-xl p-2" title="واتساب">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:fattahwsmi@Gmail.com" class="hover:text-brand-500 transition-colors text-xl p-2" title="البريد الإلكتروني">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                        <button onclick="copyToClipboard('01151495701')" class="hover:text-brand-500 transition-colors text-xl p-2" title="نسخ رقم الهاتف">
+                            <i class="fa-solid fa-copy"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Hero Image / Avatar Frame -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative">
+                        <!-- Background Glow behind image -->
+                        <div class="absolute -inset-4 bg-gradient-to-r from-brand-500 to-brand-teal rounded-full blur-2xl opacity-40 animate-pulse"></div>
+                        
+                        <!-- Main Avatar Circular Glowing Frame -->
+                        <div class="glowing-avatar relative w-64 h-64 sm:w-80 sm:h-80 rounded-full shadow-2xl flex items-center justify-center bg-brand-dark p-2">
+                            
+                            <!-- Profile Picture (Placeholder Executive Badge Icon & Initials / Photo fallback) -->
+                            <div class="w-full h-full rounded-full bg-gradient-to-b from-brand-card to-brand-dark flex flex-col items-center justify-center overflow-hidden border border-white/10 relative group">
+                                <i class="fa-solid fa-user-doctor text-7xl text-brand-500/90 group-hover:scale-110 transition-transform duration-300"></i>
+                                <span class="mt-4 font-bold text-lg text-white">مـحمـد عـبد الفـتـاح</span>
+                                <span class="text-xs text-brand-teal">Administration Manager</span>
+                                
+                                <!-- Floating JCI Badge Badge overlay -->
+                                <div class="absolute bottom-4 bg-brand-dark/90 px-3 py-1 rounded-full border border-brand-gold/40 text-brand-gold text-xs font-semibold flex items-center shadow-lg">
+                                    <i class="fa-solid fa-shield-halved ml-1 text-brand-gold"></i> JCI Certified Specialist
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stats Card Overlay Left -->
+                        <div class="absolute -bottom-6 -left-6 glass-panel p-4 rounded-2xl border border-white/10 shadow-card-glow hidden sm:flex items-center space-x-3 space-x-reverse">
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-500 flex items-center justify-center text-xl font-bold">
+                                +15
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-white">سنوات خبرة</div>
+                                <div class="text-xs text-gray-400">في المستشفيات الكبرى</div>
+                            </div>
+                        </div>
+
+                        <!-- Stats Card Overlay Right -->
+                        <div class="absolute -top-6 -right-6 glass-panel p-4 rounded-2xl border border-white/10 shadow-card-glow hidden sm:flex items-center space-x-3 space-x-reverse">
+                            <div class="w-12 h-12 rounded-xl bg-brand-teal/20 text-brand-teal flex items-center justify-center text-xl font-bold">
+                                4+
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-white">مستشفيات معتمدة</div>
+                                <div class="text-xs text-gray-400">تأهيل JCI & IMS</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Metrics / Achievements Bar -->
+    <section class="py-10 bg-brand-card/40 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                
+                <div class="p-4 glass-panel rounded-2xl border-white/5">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-brand-500 mb-1">+15 سنة</div>
+                    <div class="text-xs sm:text-sm text-gray-300 font-medium">خبرة قيادية بالمجال الطبي</div>
+                </div>
+
+                <div class="p-4 glass-panel rounded-2xl border-white/5">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-brand-teal mb-1">100%</div>
+                    <div class="text-xs sm:text-sm text-gray-300 font-medium">الالتزام بمعايير الجودة الدولية</div>
+                </div>
+
+                <div class="p-4 glass-panel rounded-2xl border-white/5">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-brand-gold mb-1">3+</div>
+                    <div class="text-xs sm:text-sm text-gray-300 font-medium">اعتمادات JCI ناجحة</div>
+                </div>
+
+                <div class="p-4 glass-panel rounded-2xl border-white/5">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-purple-400 mb-1">+35%</div>
+                    <div class="text-xs sm:text-sm text-gray-300 font-medium">تحسين الكفاءة التشغيلية</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs uppercase font-bold text-brand-500 tracking-widest mb-2">نبذة استراتيجية</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white">الرؤية والخبرة الإدارية الشاملة</h3>
+                <div class="w-16 h-1 bg-gradient-to-r from-brand-500 to-brand-teal mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="glass-panel p-8 rounded-2xl border-white/5 hover:border-brand-500/40 transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-500 group-hover:text-white transition-all">
+                        <i class="fa-solid fa-sitemap"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">التخطيط والإدارة العامة</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        قيادة العمليات الإدارية اليومية بكفاءة عالية في المستشفيات الكبرى، وهيكلة سكرتارية الأقسام الداخلية وضمان سلاسة تدفق البيانات والمعلومات الإدارية بين جميع القطاعات الطبية.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-panel p-8 rounded-2xl border-white/5 hover:border-brand-teal/40 transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-teal/10 text-brand-teal flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-teal group-hover:text-white transition-all">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">اعتماد الجودة الصحية</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        سجل حافل في إعداد وتأهيل الأقسام الإدارية والخدمية للحصول على الاعتمادات الدولية الرائدة مثل (JCI) ونظام الإدارة المتكامل (Euro Cert IMS).
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-panel p-8 rounded-2xl border-white/5 hover:border-brand-gold/40 transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-gold/10 text-brand-gold flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-gold group-hover:text-white transition-all">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">التدريب والموارد البشرية</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        تطوير الكوادر الإدارية وسكرتارية المستشفيات، ورفع كفاءة التواصل الداخلي وتدريب الفرق على مهارات التفويض، إدارة الوقت، وتقديم أفضل تجربة مريض.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience Timeline Section -->
+    <section id="experience" class="py-20 bg-brand-dark/50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs uppercase font-bold text-brand-teal tracking-widest mb-2">المسيرة المهنية</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white">الخبرات العملية والإنجازات القيادية</h3>
+                <div class="w-16 h-1 bg-gradient-to-r from-brand-teal to-brand-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Vertical Timeline Container -->
+            <div class="relative timeline-container max-w-4xl mx-auto">
+
+                <!-- Item 1: Baheya Hospital (Current) -->
+                <div class="mb-12 relative flex flex-col md:flex-row items-center">
+                    <!-- Dot Icon -->
+                    <div class="absolute right-0 md:right-1/2 transform md:translate-x-1/2 z-10 w-12 h-12 rounded-full bg-brand-500 text-white flex items-center justify-center text-lg shadow-glow-emerald border-4 border-brand-dark">
+                        <i class="fa-solid fa-building-hospital"></i>
+                    </div>
+
+                    <!-- Left / Content Column for Mobile & Desktop Alignment -->
+                    <div class="w-full md:w-1/2 md:pr-12 pr-16 md:pr-12 md:pl-0 md:text-left">
+                        <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-brand-500/30 shadow-card-glow hover:border-brand-500 transition-all">
+                            <span class="inline-block px-3 py-1 rounded-full bg-brand-500/20 text-brand-500 text-xs font-bold mb-3">
+                                2020 - حتى الآن
+                            </span>
+                            <h4 class="text-xl font-bold text-white">مدير الإدارة العامة ومدير سكرتارية الأقسام الداخلية</h4>
+                            <h5 class="text-md font-semibold text-brand-teal mb-4">مستشفى بهية (Baheya Center)</h5>
+                            <ul class="text-gray-300 text-sm space-y-2 list-disc list-inside leading-relaxed">
+                                <li>قيادة وإشراف شامل على كافة العمليات الإدارية وسكرتارية الأقسام الداخلية بالمستشفى.</li>
+                                <li>تأهيل وتطبيق نظام الإدارة المتكامل للحصول على شهادة **Euro Cert IMS**.</li>
+                                <li>رفع كفاءة الاستجابة والخدمة الإدارية للأقسام الداخلية بنسبة 35%.</li>
+                                <li>تنسيق التواصل الإداري المباشر بين الفرق الطبية والتمريضية والإدارية لضمان راحة المرضى.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="hidden md:block w-1/2"></div>
+                </div>
+
+                <!-- Item 2: Katameya Clinic Hospital -->
+                <div class="mb-12 relative flex flex-col md:flex-row items-center">
+                    <div class="absolute right-0 md:right-1/2 transform md:translate-x-1/2 z-10 w-12 h-12 rounded-full bg-brand-teal text-white flex items-center justify-center text-lg shadow-glow-teal border-4 border-brand-dark">
+                        <i class="fa-solid fa-id-card-clip"></i>
+                    </div>
+
+                    <div class="hidden md:block w-1/2"></div>
+
+                    <div class="w-full md:w-1/2 pl-0 md:pl-12 pr-16 md:pr-0">
+                        <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-white/5 hover:border-brand-teal/50 transition-all">
+                            <span class="inline-block px-3 py-1 rounded-full bg-brand-teal/20 text-brand-teal text-xs font-bold mb-3">
+                                يناير 2019 - ديسمبر 2019
+                            </span>
+                            <h4 class="text-xl font-bold text-white">أخصائي الموارد البشرية (HR Specialist)</h4>
+                            <h5 class="text-md font-semibold text-brand-teal mb-4">مستشفى عيادات القطامية (Katameya Clinic Hospital)</h5>
+                            <ul class="text-gray-300 text-sm space-y-2 list-disc list-inside leading-relaxed">
+                                <li>إدارة وتطوير عمليات الموارد البشرية وشؤون العاملين بالقطاع الإداري والطبي.</li>
+                                <li>تقييم أداء فرق العمل وتنفيذ برامج التوجيه والتأهيل الوظيفي لتقليل معدل دوران العمل.</li>
+                                <li>إعداد تقارير الأداء وتطوير سياسات العمل الداخلي.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3: Dar El Fouad & El Kateb Hospitals -->
+                <div class="mb-12 relative flex flex-col md:flex-row items-center">
+                    <div class="absolute right-0 md:right-1/2 transform md:translate-x-1/2 z-10 w-12 h-12 rounded-full bg-brand-gold text-white flex items-center justify-center text-lg border-4 border-brand-dark">
+                        <i class="fa-solid fa-stethoscope"></i>
+                    </div>
+
+                    <div class="w-full md:w-1/2 md:pr-12 pr-16 md:pr-12 md:pl-0">
+                        <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-white/5 hover:border-brand-gold/50 transition-all">
+                            <span class="inline-block px-3 py-1 rounded-full bg-brand-gold/20 text-brand-gold text-xs font-bold mb-3">
+                                2017 - 2018
+                            </span>
+                            <h4 class="text-xl font-bold text-white">مشرف سكرتارية الأقسام الداخلية</h4>
+                            <h5 class="text-md font-semibold text-brand-gold mb-4">مستشفى دار الفؤاد (مدينة نصر) & مستشفى الكاتب</h5>
+                            <ul class="text-gray-300 text-sm space-y-2 list-disc list-inside leading-relaxed">
+                                <li>المساهمة الفعلية والتنفيذية في إعداد وتجهيز مستشفى دار الفؤاد للحصول على الاعتماد الدولي **JCI**.</li>
+                                <li>الإشراف المباشر على فريق سكرتارية الأقسام الداخلية وتطوير منظومة التوثيق والسجلات الإدارية للمرضى.</li>
+                                <li>تسريع وتسهيل إجراءات دخول وخروج المرضى وتقليل زمن الانتظار.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="hidden md:block w-1/2"></div>
+                </div>
+
+                <!-- Item 4: EL Araby Hospital -->
+                <div class="mb-12 relative flex flex-col md:flex-row items-center">
+                    <div class="absolute right-0 md:right-1/2 transform md:translate-x-1/2 z-10 w-12 h-12 rounded-full bg-purple-500 text-white flex items-center justify-center text-lg border-4 border-brand-dark">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+
+                    <div class="hidden md:block w-1/2"></div>
+
+                    <div class="w-full md:w-1/2 pl-0 md:pl-12 pr-16 md:pr-0">
+                        <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-white/5 hover:border-purple-500/50 transition-all">
+                            <span class="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold mb-3">
+                                2014 - 2016
+                            </span>
+                            <h4 class="text-xl font-bold text-white">مراجع داخلي ومشرف سكرتارية الأقسام</h4>
+                            <h5 class="text-md font-semibold text-purple-400 mb-4">مستشفى العربي (EL Araby Hospital)</h5>
+                            <ul class="text-gray-300 text-sm space-y-2 list-disc list-inside leading-relaxed">
+                                <li>العمل كمراجع داخلي (Internal Auditor) لضمان الامتثال التام للمعايير التشغيلية المعتمدة.</li>
+                                <li>المشاركة في تجهيز الأقسام وتطبيق متطلبات الحصول على الاعتماد الدولي **JCI**.</li>
+                                <li>التدرج من سكرتير قسم إلى مشرف وقائم بأعمال الإشراف على سكرتارية الأقسام الداخلية.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5: As-Salam International Hospital -->
+                <div class="relative flex flex-col md:flex-row items-center">
+                    <div class="absolute right-0 md:right-1/2 transform md:translate-x-1/2 z-10 w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center text-lg border-4 border-brand-dark">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+
+                    <div class="w-full md:w-1/2 md:pr-12 pr-16 md:pr-12 md:pl-0">
+                        <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-white/5 hover:border-blue-500/50 transition-all">
+                            <span class="inline-block px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-bold mb-3">
+                                2007 - 2013
+                            </span>
+                            <h4 class="text-xl font-bold text-white">سكرتير أقسام داخلية ومدخل بيانات</h4>
+                            <h5 class="text-md font-semibold text-blue-400 mb-4">مستشفى السلام الدولي بالمعادي & مجموعة المعالي</h5>
+                            <ul class="text-gray-300 text-sm space-y-2 list-disc list-inside leading-relaxed">
+                                <li>المساهمة في التجهيز والتحضير لحصول مستشفى السلام الدولي على اعتماد **JCI**.</li>
+                                <li>إدخال ومعالجة البيانات السريرية والإدارية بدقة متناهية وسرعة قياسية.</li>
+                                <li>التنسيق اليومي مع الفرق الطبية والمالية وإدارة ملفات الدخول والمعالجة.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="hidden md:block w-1/2"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section with Animated Progress Bars -->
+    <section id="skills" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs uppercase font-bold text-brand-500 tracking-widest mb-2">الكفاءات والقدرات</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white">تصنيف المهارات وأشرطة التميز</h3>
+                <div class="w-16 h-1 bg-gradient-to-r from-brand-500 to-brand-teal mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Category 1: Management & Business Skills -->
+                <div class="glass-panel p-8 rounded-2xl border-white/5 space-y-6">
+                    <div class="flex items-center space-x-3 space-x-reverse mb-6 border-b border-white/10 pb-4">
+                        <div class="w-10 h-10 rounded-xl bg-brand-500/20 text-brand-500 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white">المهارات الإدارية والتنفيذية</h4>
+                    </div>
+
+                    <!-- Skill item -->
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-gray-200">إدارة العمليات بالمستشفيات (Hospital Operations)</span>
+                            <span class="text-brand-500">95%</span>
+                        </div>
+                        <div class="w-full h-3 bg-brand-dark rounded-full overflow-hidden p-0.5 border border-white/5">
+                            <div class="progress-line" style="width: 95%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill item -->
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-gray-200">تأهيل واعتماد الجودة (JCI & IMS Euro Cert)</span>
+                            <span class="text-brand-teal">90%</span>
+                        </div>
+                        <div class="w-full h-3 bg-brand-dark rounded-full overflow-hidden p-0.5 border border-white/5">
+                            <div class="progress-line" style="width: 90%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill item -->
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-gray-200">إدارة الوقت والتفويض (Delegation & Time Mgmt)</span>
+                            <span class="text-brand-500">92%</span>
+                        </div>
+                        <div class="w-full h-3 bg-brand-dark rounded-full overflow-hidden p-0.5 border border-white/5">
+                            <div class="progress-line" style="width: 92%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill item -->
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-gray-200">إدارة وتوجيه الكوادر البشرية (HR & Team Leadership)</span>
+                            <span class="text-brand-gold">88%</span>
+                        </div>
+                        <div class="w-full h-3 bg-brand-dark rounded-full overflow-hidden p-0.5 border border-white/5">
+                            <div class="progress-line" style="width: 88%;"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Category 2: Technical & MIS Skills -->
+                <div class="glass-panel p-8 rounded-2xl border-white/5 space-y-6">
+                    <div class="flex items-center space-x-3 space-x-reverse mb-6 border-b border-white/10 pb-4">
+                        <div class="w-10 h-10 rounded-xl bg-brand-teal/20 text-brand-teal flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white">المهارات التقنية والأنظمة</h4>
+                    </div>
+
+                    <!-- Skill item -->
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-gray-200">نظم معلومات الإدارة (Management Information Systems)</span>
+                            <span class="text-brand-teal">92%</span>
+                        </div>
+                        <div class="w-full h-3 bg-brand-dark rounded-full overflow-hidden p-0.5 border border-white/5">
+                            <div class="progress-line" style="width: 92%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill item -->
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-gray-200">برامج آفيس وإدخال البيانات (MS Office & ICDL)</span>
+                            <span class="text-brand-500">95%</span>
+                        </div>
+                        <div class="w-full h-3 bg-brand-dark rounded-full overflow-hidden p-0.5 border border-white/5">
+                            <div class="progress-line" style="width: 95%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill item -->
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-gray-200">التدقيق الداخلي وإعداد التقارير (Internal Audit)</span>
+                            <span class="text-purple-400">88%</span>
+                        </div>
+                        <div class="w-full h-3 bg-brand-dark rounded-full overflow-hidden p-0.5 border border-white/5">
+                            <div class="progress-line" style="width: 88%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill item -->
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-gray-200">متابعة حسابات الأرباح والخسائر (P&L Statements)</span>
+                            <span class="text-brand-gold">80%</span>
+                        </div>
+                        <div class="w-full h-3 bg-brand-dark rounded-full overflow-hidden p-0.5 border border-white/5">
+                            <div class="progress-line" style="width: 80%;"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Soft Skills Pills -->
+            <div class="mt-12 text-center">
+                <h4 class="text-sm font-semibold text-gray-400 mb-4">مهارات وسلوكيات العمل المحورية</h4>
+                <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+                    <span class="px-4 py-2 rounded-xl glass-panel text-sm text-gray-200 border border-white/10 hover:border-brand-500 transition-colors">
+                        <i class="fa-solid fa-comments ml-2 text-brand-500"></i>التواصل الفعال (Communication)
+                    </span>
+                    <span class="px-4 py-2 rounded-xl glass-panel text-sm text-gray-200 border border-white/10 hover:border-brand-teal transition-colors">
+                        <i class="fa-solid fa-lightbulb ml-2 text-brand-teal"></i>حل المشكلات المستعصية
+                    </span>
+                    <span class="px-4 py-2 rounded-xl glass-panel text-sm text-gray-200 border border-white/10 hover:border-brand-gold transition-colors">
+                        <i class="fa-solid fa-users ml-2 text-brand-gold"></i>إدارة فرق العمل الكبيرة
+                    </span>
+                    <span class="px-4 py-2 rounded-xl glass-panel text-sm text-gray-200 border border-white/10 hover:border-purple-400 transition-colors">
+                        <i class="fa-solid fa-file-contract ml-2 text-purple-400"></i>كتابة المراسلات والتقارير الرسمية
+                    </span>
+                    <span class="px-4 py-2 rounded-xl glass-panel text-sm text-gray-200 border border-white/10 hover:border-brand-500 transition-colors">
+                        <i class="fa-solid fa-clock ml-2 text-brand-500"></i>إدارة الأزمات والضغوط
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Projects / Milestones Cards Section -->
+    <section id="projects" class="py-20 bg-brand-dark/40 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs uppercase font-bold text-brand-gold tracking-widest mb-2">نماذج النجاح</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white">مشاريع بارزة واعتمادات عالمية</h3>
+                <div class="w-16 h-1 bg-gradient-to-r from-brand-gold to-brand-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Project Card 1: JCI -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 hover:border-brand-gold/60 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between group">
+                    <div class="p-8">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-gold/10 text-brand-gold flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-brand-gold/20 text-brand-gold text-xs font-bold mb-3 inline-block">
+                            اعتماد دولي ثلاثي
+                        </span>
+                        <h4 class="text-xl font-bold text-white mb-3">تأهيل واعتماد الاعتماد الدولي (JCI)</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            قيادة وإعداد سكرتارية الأقسام الداخلية والتوثيق الإداري للحصول على الاعتماد الدولي لمنظمة JCI في ثلاث مستشفيات كبرى: مستشفى السلام الدولي، مستشفى العربي، ومستشفى دار الفؤاد.
+                        </p>
+                    </div>
+                    <div class="px-8 py-4 bg-brand-dark/60 border-t border-white/5 flex items-center justify-between text-xs text-gray-300">
+                        <span><i class="fa-solid fa-check-circle text-brand-gold ml-1"></i>نجاح بنسبة 100%</span>
+                        <span class="font-semibold text-brand-gold">Joint Commission International</span>
+                    </div>
+                </div>
+
+                <!-- Project Card 2: IMS Euro Cert -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 hover:border-brand-500/60 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between group">
+                    <div class="p-8">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-shield-virus"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-brand-500/20 text-brand-500 text-xs font-bold mb-3 inline-block">
+                            تكامل النظم المؤسسية
+                        </span>
+                        <h4 class="text-xl font-bold text-white mb-3">تطبيق نظام الإدارة المتكامل (IMS Euro Cert)</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            التخطيط والتطبيق الإداري الكامل لمعايير شهادة نظام الإدارة المتكامل (Euro Cert) بمستشفى بهية، مما أدى لتكامل الأقسام الإدارية والسريرية وفق أعلى المقاييس الأوروبية.
+                        </p>
+                    </div>
+                    <div class="px-8 py-4 bg-brand-dark/60 border-t border-white/5 flex items-center justify-between text-xs text-gray-300">
+                        <span><i class="fa-solid fa-check-circle text-brand-500 ml-1"></i>اعتماد متكامل</span>
+                        <span class="font-semibold text-brand-500">Baheya Center</span>
+                    </div>
+                </div>
+
+                <!-- Project Card 3: Ward Secretariat Optimization -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-white/5 hover:border-brand-teal/60 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between group">
+                    <div class="p-8">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-teal/10 text-brand-teal flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-sliders"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-brand-teal/20 text-brand-teal text-xs font-bold mb-3 inline-block">
+                            إعادة هيكلة وتطوير
+                        </span>
+                        <h4 class="text-xl font-bold text-white mb-3">نظام تطوير وتأهيل سكرتارية الأقسام</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            تطوير وتنفيذ الأدلة الإجرائية وبرامج التدريب المستمر لسكرتارية المستشفيات، مما ساهم في تقليل زمن تسكين وإجراءات المرضى ورفع تقييم رضا المراجعين.
+                        </p>
+                    </div>
+                    <div class="px-8 py-4 bg-brand-dark/60 border-t border-white/5 flex items-center justify-between text-xs text-gray-300">
+                        <span><i class="fa-solid fa-chart-line text-brand-teal ml-1"></i>كفاءة +35%</span>
+                        <span class="font-semibold text-brand-teal">Operations Optimization</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications Section -->
+    <section id="education" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs uppercase font-bold text-brand-teal tracking-widest mb-2">المؤهلات والبرامج التدريبية</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white">التعليم الأكاديمي والشهادات</h3>
+                <div class="w-16 h-1 bg-gradient-to-r from-brand-teal to-brand-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Academic Education -->
+                <div class="glass-panel p-8 rounded-2xl border border-white/5 flex space-x-5 space-x-reverse items-start">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-teal/20 text-brand-teal flex items-center justify-center text-2xl flex-shrink-0">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-brand-teal font-bold block mb-1">2005 - 2009</span>
+                        <h4 class="text-xl font-bold text-white mb-2">بكالوريوس نظم معلومات إدارية (MIS)</h4>
+                        <h5 class="text-md text-gray-300 mb-3">المعهد العالي للدراسات المتطورة بالهرم</h5>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            دراسة متخصصة تناولت نظم المعلومات وتطبيقاتها في الإدارة المؤسسية، معالجة البيانات، وتحليل قواعد البيانات الإدارية.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Training Program BBSA -->
+                <div class="glass-panel p-8 rounded-2xl border border-white/5 flex space-x-5 space-x-reverse items-start">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-gold/20 text-brand-gold flex items-center justify-center text-2xl flex-shrink-0">
+                        <i class="fa-solid fa-handshake-angle"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-brand-gold font-bold block mb-1">مارس 2010</span>
+                        <h4 class="text-xl font-bold text-white mb-2">برنامج اكتساب المهارات الأساسية للأعمال (BBSA)</h4>
+                        <h5 class="text-md text-gray-300 mb-3">مؤسسة أجيال المستقبل (FGF - Cairo)</h5>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            برنامج مكثف شمل مهارات المراسلات والمكاتبات التجارية، العروض التقديمية (Presentation Skills)، تطوير اللغة والتواصل المؤسسي.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Action Section -->
+    <section id="contact" class="py-20 bg-brand-dark/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Contact Direct Details -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <h2 class="text-xs uppercase font-bold text-brand-500 tracking-widest mb-2">تواصل مباشر</h2>
+                        <h3 class="text-3xl font-bold text-white mb-4">بدء التعاون والاستشارات الإدارية</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            متاح لمناقشة فرص إدارة العمليات الطبية بالمستشفيات، تطوير سكرتارية الأقسام، والاستشارات الإدارية لمشاريع الجودة والاعتماد.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        
+                        <!-- Phone Card -->
+                        <div class="glass-panel p-4 rounded-xl border border-white/5 flex items-center justify-between hover:border-brand-500/50 transition-all">
+                            <div class="flex items-center space-x-4 space-x-reverse">
+                                <div class="w-12 h-12 rounded-lg bg-brand-500/20 text-brand-500 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-gray-400 block">رقم الهاتف</span>
+                                    <a href="tel:01151495701" class="text-white font-bold hover:text-brand-500 transition-colors">01151495701</a>
+                                </div>
+                            </div>
+                            <button onclick="copyToClipboard('01151495701')" class="text-gray-400 hover:text-white p-2" title="نسخ الرقم">
+                                <i class="fa-solid fa-copy"></i>
+                            </button>
+                        </div>
+
+                        <!-- Email Card -->
+                        <div class="glass-panel p-4 rounded-xl border border-white/5 flex items-center justify-between hover:border-brand-teal/50 transition-all">
+                            <div class="flex items-center space-x-4 space-x-reverse">
+                                <div class="w-12 h-12 rounded-lg bg-brand-teal/20 text-brand-teal flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-gray-400 block">البريد الإلكتروني</span>
+                                    <a href="mailto:fattahwsmi@Gmail.com" class="text-white font-bold hover:text-brand-teal transition-colors">fattahwsmi@Gmail.com</a>
+                                </div>
+                            </div>
+                            <button onclick="copyToClipboard('fattahwsmi@Gmail.com')" class="text-gray-400 hover:text-white p-2" title="نسخ البريد">
+                                <i class="fa-solid fa-copy"></i>
+                            </button>
+                        </div>
+
+                        <!-- WhatsApp Card -->
+                        <div class="glass-panel p-4 rounded-xl border border-white/5 flex items-center justify-between hover:border-emerald-500/50 transition-all">
+                            <div class="flex items-center space-x-4 space-x-reverse">
+                                <div class="w-12 h-12 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-gray-400 block">تواصل واتساب مباشر</span>
+                                    <a href="https://wa.me/201151495701" target="_blank" class="text-white font-bold hover:text-emerald-400 transition-colors">+201151495701</a>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/201151495701" target="_blank" class="text-emerald-400 hover:text-white p-2">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Contact Interactive Form -->
+                <div class="lg:col-span-7">
+                    <div class="glass-panel p-8 sm:p-10 rounded-2xl border border-white/10 shadow-card-glow">
+                        <h4 class="text-xl font-bold text-white mb-6">إرسال رسالة مباشرة</h4>
+                        
+                        <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-300 mb-1.5">الاسم بالكامل</label>
+                                    <input type="text" required placeholder="أدخل اسمك الكريم" class="w-full px-4 py-3 rounded-xl bg-brand-dark/80 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 transition-colors text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-300 mb-1.5">رقم التواصل / البريد</label>
+                                    <input type="text" required placeholder="رقم الهاتف أو البريد" class="w-full px-4 py-3 rounded-xl bg-brand-dark/80 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 transition-colors text-sm">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-medium text-gray-300 mb-1.5">موضوع الرسالة / المؤسسة</label>
+                                <input type="text" placeholder="اسم المستشفى / موضوع الاستشارة" class="w-full px-4 py-3 rounded-xl bg-brand-dark/80 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 transition-colors text-sm">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-medium text-gray-300 mb-1.5">تفاصيل الرسالة</label>
+                                <textarea rows="4" required placeholder="اكتب تفاصيل استفسارك أو طلبك هنا..." class="w-full px-4 py-3 rounded-xl bg-brand-dark/80 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 transition-colors text-sm"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-500 to-brand-teal text-white font-bold shadow-glow-emerald hover:opacity-95 transition-all text-sm">
+                                <i class="fa-solid fa-paper-plane ml-2"></i>إرسال الرسالة الآن
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-brand-dark border-t border-white/5 text-center text-xs text-gray-400">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 2026 جميع الحقوق محفوظة | **محمد عبد الفتاح محمد** - خبير إدارة العمليات والخدمات الطبية والجودة</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Floating Action Bar (شريط عائم سفلي للموبايل) -->
+    <div class="md:hidden fixed bottom-4 left-4 right-4 z-50 glass-panel p-2 rounded-2xl border border-brand-500/30 shadow-card-glow flex items-center justify-around">
+        
+        <!-- Call Button -->
+        <a href="tel:01151495701" class="flex flex-col items-center justify-center text-gray-300 hover:text-brand-500 py-1 px-3">
+            <i class="fa-solid fa-phone text-lg text-brand-500"></i>
+            <span class="text-[10px] font-semibold mt-1">اتصال</span>
+        </a>
+
+        <!-- WhatsApp Button -->
+        <a href="https://wa.me/201151495701" target="_blank" class="flex flex-col items-center justify-center text-gray-300 hover:text-emerald-400 py-1 px-3">
+            <i class="fa-brands fa-whatsapp text-xl text-emerald-400"></i>
+            <span class="text-[10px] font-semibold mt-1">واتساب</span>
+        </a>
+
+        <!-- Email / Contact Link -->
+        <a href="#contact" class="flex flex-col items-center justify-center text-gray-300 hover:text-brand-teal py-1 px-3">
+            <i class="fa-solid fa-envelope text-lg text-brand-teal"></i>
+            <span class="text-[10px] font-semibold mt-1">تواصل</span>
+        </a>
+
+        <!-- Download CV Button Mobile -->
+        <button onclick="downloadCV()" class="flex flex-col items-center justify-center text-gray-300 hover:text-brand-gold py-1 px-3">
+            <i class="fa-solid fa-file-arrow-down text-lg text-brand-gold"></i>
+            <span class="text-[10px] font-semibold mt-1">السيرة الذاتية</span>
+        </button>
+
+    </div>
+
+    <!-- JavaScript logic -->
+    <script>
+        // Toggle Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Copy to Clipboard Function
+        function copyToClipboard(text) {
+            const tempInput = document.createElement("input");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            
+            showToast("تم نسخ: " + text);
+        }
+
+        // Show Custom Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            const toastMsg = document.getElementById("toast-message");
+            toastMsg.innerText = message;
+            toast.classList.add("show");
+            setTimeout(function(){ toast.classList.remove("show"); }, 3000);
+        }
+
+        // Form Submit Simulation
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showToast("شكراً لتواصلك! تم إرسال رسالتك بنجاح.");
+            document.getElementById("contact-form").reset();
+        }
+
+        // Download CV Simulation
+        function downloadCV() {
+            showToast("جاري تجهيز تحميل السيرة الذاتية لـ محمد عبد الفتاح...");
+            setTimeout(() => {
+                window.print();
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
