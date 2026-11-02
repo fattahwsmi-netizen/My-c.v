@@ -1,183 +1,412 @@
+طبعاً يا هندسة، ده الكود الكامل اللي فيه القائمة الجانبية والبيانات المزدوجة باللغتين: ```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محمد عبد الفتاح محمد - السيرة الذاتية</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0b0b0b;
-            color: #d4af37;
-            line-height: 1.6;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #141414;
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #d4af37;
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
-        }
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #d4af37;
-            padding-bottom: 20px;
-        }
-        h1 {
-            color: #f3e5ab;
-            font-size: 2rem;
-            margin-bottom: 8px;
-        }
-        .title {
-            color: #d4af37;
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
-        .location {
-            color: #aa944d;
-            font-size: 0.95rem;
-        }
-        .section {
-            background-color: #1c1c1c;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-right: 4px solid #d4af37;
-        }
-        h2 {
-            color: #f3e5ab;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 5px;
-        }
-        .item {
-            margin-bottom: 15px;
-        }
-        .item:last-child {
-            margin-bottom: 0;
-        }
-        h3 {
-            color: #d4af37;
-            font-size: 1.1rem;
-            margin-bottom: 4px;
-        }
-        .date {
-            color: #aa944d;
-            font-size: 0.85rem;
-            margin-bottom: 6px;
-        }
-        p {
-            color: #cccccc;
-            font-size: 0.95rem;
-        }
-        .qr-container {
-            text-align: center;
-            margin-top: 15px;
-        }
-        .qr-code {
-            width: 150px;
-            height: 150px;
-            border: 3px solid #d4af37;
-            border-radius: 8px;
-            padding: 5px;
-            background-color: #ffffff;
-        }
-        .contact-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 15px;
-        }
-        .contact-icons a {
-            color: #d4af37;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s;
-        }
-        .contact-icons a:hover {
-            color: #f3e5ab;
-        }
-        footer {
-            text-align: center;
-            padding: 15px 0 0 0;
-            color: #aa944d;
-            font-size: 0.85rem;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Abdelfattah Mohamed - CV / السيرة الذاتية</title>
+<style>
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background-color: #0b0b0b;
+color: #d4af37;
+line-height: 1.6;
+padding-top: 60px;
+}
+/* Navbar & Sidebar Menu */
+.navbar {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+height: 60px;
+background-color: #141414;
+border-bottom: 1px solid #d4af37;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 20px;
+z-index: 1000;
+}
+.nav-title {
+color: #f3e5ab;
+font-size: 1.1rem;
+font-weight: bold;
+}
+.menu-btn {
+background: none;
+border: none;
+color: #d4af37;
+font-size: 1.8rem;
+cursor: pointer;
+}
+.sidebar {
+position: fixed;
+top: 0;
+right: -280px;
+width: 280px;
+height: 100%;
+background-color: #141414;
+border-left: 2px solid #d4af37;
+box-shadow: -5px 0 15px rgba(0,0,0,0.8);
+transition: right 0.3s ease;
+z-index: 1001;
+padding: 20px;
+}
+.sidebar.active {
+right: 0;
+}
+.close-btn {
+background: none;
+border: none;
+color: #d4af37;
+font-size: 1.5rem;
+float: left;
+cursor: pointer;
+}
+.sidebar-menu {
+list-style: none;
+margin-top: 40px;
+}
+.sidebar-menu li {
+margin-bottom: 20px;
+}
+.sidebar-menu a {
+color: #f3e5ab;
+text-decoration: none;
+font-size: 1rem;
+display: block;
+padding: 8px;
+border-bottom: 1px solid #333;
+transition: color 0.2s, background 0.2s;
+}
+.sidebar-menu a:hover {
+color: #0b0b0b;
+background-color: #d4af37;
+border-radius: 4px;
+}
+.overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.7);
+display: none;
+z-index: 1000;
+}
+.overlay.active {
+display: block;
+}
+/* Container Layout */
+.container {
+max-width: 850px;
+margin: 20px auto;
+background-color: #141414;
+padding: 30px;
+border-radius: 12px;
+border: 1px solid #d4af37;
+box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+}
+header {
+text-align: center;
+margin-bottom: 30px;
+border-bottom: 2px solid #d4af37;
+padding-bottom: 20px;
+}
+h1 {
+color: #f3e5ab;
+font-size: 2.2rem;
+margin-bottom: 6px;
+}
+.en-name {
+color: #d4af37;
+font-size: 1.3rem;
+margin-bottom: 10px;
+}
+.title-ar {
+color: #f3e5ab;
+font-size: 1.1rem;
+font-weight: 500;
+}
+.title-en {
+color: #aa944d;
+font-size: 0.95rem;
+margin-bottom: 8px;
+}
+.location {
+color: #aa944d;
+font-size: 0.9rem;
+}
+/* Section Styling */
+.section {
+background-color: #1c1c1c;
+padding: 20px;
+border-radius: 8px;
+margin-bottom: 25px;
+border-right: 4px solid #d4af37;
+scroll-margin-top: 80px;
+}
+h2 {
+color: #f3e5ab;
+font-size: 1.3rem;
+margin-bottom: 15px;
+border-bottom: 1px solid #333;
+padding-bottom: 8px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+h2 span.en-title {
+font-size: 1rem;
+color: #aa944d;
+font-weight: normal;
+}
+.item {
+margin-bottom: 20px;
+padding-bottom: 15px;
+border-bottom: 1px dashed #333;
+}
+.item:last-child {
+margin-bottom: 0;
+padding-bottom: 0;
+border-bottom: none;
+}
+h3 {
+color: #d4af37;
+font-size: 1.1rem;
+margin-bottom: 2px;
+}
+.sub-title-en {
+color: #aa944d;
+font-size: 0.95rem;
+margin-bottom: 4px;
+font-style: italic;
+}
+.date {
+color: #aa944d;
+font-size: 0.85rem;
+margin-bottom: 8px;
+}
+p.desc-ar {
+color: #cccccc;
+font-size: 0.95rem;
+margin-bottom: 4px;
+}
+p.desc-en {
+color: #999999;
+font-size: 0.88rem;
+direction: ltr;
+text-align: right;
+}
+/* QR Code & Contact */
+.qr-container {
+text-align: center;
+margin-top: 15px;
+}
+.qr-code {
+width: 150px;
+height: 150px;
+border: 3px solid #d4af37;
+border-radius: 8px;
+padding: 5px;
+background-color: #ffffff;
+}
+.contact-icons {
+display: flex;
+justify-content: center;
+gap: 25px;
+margin-top: 15px;
+}
+.contact-icons a {
+color: #d4af37;
+text-decoration: none;
+font-size: 1rem;
+transition: color 0.3s;
+}
+.contact-icons a:hover {
+color: #f3e5ab;
+}
+footer {
+text-align: center;
+padding: 15px 0;
+color: #aa944d;
+font-size: 0.85rem;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>محمد عبد الفتاح محمد</h1>
-            <div class="title">مدير الإدارة العامة وخبير تشغيل المستشفيات والجودة</div>
-            <div class="location">القاهرة، مصر</div>
-        </header>
-
-        <div class="section">
-            <h2>الخبرات العملية</h2>
-            <div class="item">
-                <h3>مدير الإدارة العامة ومدير سكرتارية الأقسام الداخلية</h3>
-                <div class="date">مستشفى بهية (Baheya Center) | 2020 - حتى الآن</div>
-                <p>قيادة وإشراف شامل على كافة العمليات الإدارية وسكرتارية الأقسام الداخلية بالمستشفى.</p>
-            </div>
-            <div class="item">
-                <h3>أخصائي الموارد البشرية (HR Specialist)</h3>
-                <div class="date">مستشفى عيادات القطامية | يناير 2019 - ديسمبر 2019</div>
-                <p>إدارة وتطوير عمليات الموارد البشرية وشؤون العاملين بالقطاع الإداري والطبي.</p>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>اعتماد الجودة الصحية</h2>
-            <div class="item">
-                <h3>JCI</h3>
-                <p>إعداد وتأهيل الأقسام للاعتماد الدولي.</p>
-            </div>
-            <div class="item">
-                <h3>IMS</h3>
-                <p>تطبيق نظام الإدارة المتكامل.</p>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>التعليم</h2>
-            <div class="item">
-                <h3>بكالوريوس في نظم معلومات الإدارة</h3>
-                <div class="date">المعهد العالي للدراسات المتطورة بالهرم | 2005 - 2009</div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>امسح الباركود (QR Code)</h2>
-            <p style="text-align: center; margin-bottom: 10px;">امسح الكود لعرض السيرة الذاتية مباشرة على الهاتف:</p>
-            <div class="qr-container">
-                <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://fattahws.github.io/My-c.v" alt="QR Code">
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>التواصل</h2>
-            <div class="contact-icons">
-                <a href="mailto:fatta.hwsmi@gmail.com">البريد الإلكتروني</a>
-                <a href="tel:01151495701">الهاتف</a>
-            </div>
-        </div>
-
-        <footer>
-            <p>2026 © Mohamed Abdelfattah Mohamed</p>
-        </footer>
-    </div>
+<!-- Header Navigation -->
+<nav class="navbar">
+<div class="nav-title">محمد عبد الفتاح | CV</div>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+</nav>
+<!-- Sidebar Overlay & Drawer -->
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<div class="sidebar" id="sidebar">
+<button class="close-btn" onclick="toggleMenu()">×</button>
+<ul class="sidebar-menu">
+<li><a href="#experience" onclick="toggleMenu()">الخبرات العملية / Work Experience</a></li>
+<li><a href="#quality" onclick="toggleMenu()">اعتماد الجودة / Accreditation</a></li>
+<li><a href="#education" onclick="toggleMenu()">التعليم / Education</a></li>
+<li><a href="#qrcode" onclick="toggleMenu()">الباركود / QR Code</a></li>
+<li><a href="#contact" onclick="toggleMenu()">التواصل / Contact</a></li>
+</ul>
+</div>
+<div class="container">
+<header>
+<h1>محمد عبد الفتاح محمد</h1>
+<div class="en-name">Mohamed Abdelfattah Mohamed</div>
+<div class="title-ar">مدير الإدارة العامة وخبير تشغيل المستشفيات والجودة</div>
+<div class="title-en">General Administration Director & Hospital Operations / Quality Expert</div>
+<div class="location">القاهرة، مصر | Cairo, Egypt</div>
+</header>
+<!-- Work Experience -->
+<div class="section" id="experience">
+<h2>
+<span>الخبرات العملية</span>
+<span class="en-title">Work Experience</span>
+</h2>
+<div class="item">
+<h3>مدير الإدارة العامة</h3>
+<div class="sub-title-en">General Administration Director</div>
+<div class="date">مستشفى بهية (Baheya Hospital) | 2020 - متوقف عن العمل / On Leave</div>
+<p class="desc-ar">قيادة وإشراف شامل على كافة العمليات الإدارية بالمستشفى.</p>
+<p class="desc-en">Comprehensive leadership and oversight of all administrative operations within the hospital.</p>
+</div>
+<div class="item">
+<h3>مدير سكرتارية الأقسام الداخلية</h3>
+<div class="sub-title-en">Inpatient Secretary Manager</div>
+<div class="date">مستشفى بهية (Baheya Hospital) | يناير 2020 - ديسمبر 2020</div>
+<p class="desc-ar">إدارة وتنظيم كافة أعمال السكرتارية للأقسام الداخلية بالمستشفى.</p>
+<p class="desc-en">Managing and organizing all secretarial operations for inpatient departments.</p>
+</div>
+<div class="item">
+<h3>أخصائي الموارد البشرية</h3>
+<div class="sub-title-en">Human Resources Specialist (HR Specialist)</div>
+<div class="date">مستشفى عيادات القطامية (Kattameya Clinic Hospital) | يناير 2019 - ديسمبر 2019</div>
+<p class="desc-ar">إدارة وتطوير عمليات الموارد البشرية وشؤون العاملين بالقطاع الإداري والطبي.</p>
+<p class="desc-en">Managing and developing HR operations and personnel management across medical and administrative sectors.</p>
+</div>
+<div class="item">
+<h3>مشرف سكرتارية الأقسام الداخلية</h3>
+<div class="sub-title-en">Inpatient Secretary Supervisor</div>
+<div class="date">مستشفى دار الفؤاد (Dar El Fouad Hospital) | يناير 2018 - ديسمبر 2018</div>
+<p class="desc-ar">الإشراف على متابعة وتنظيم عمل سكرتارية الأقسام الداخلية.</p>
+<p class="desc-en">Supervising and organizing the workflow of inpatient ward secretarial teams.</p>
+</div>
+<div class="item">
+<h3>مشرف سكرتارية الأقسام الداخلية</h3>
+<div class="sub-title-en">Inpatient Secretary Supervisor</div>
+<div class="date">مستشفى الكاتب (El Kateb Hospital) | ديسمبر 2017 - يناير 2018</div>
+<p class="desc-ar">متابعة وتوجيه فريق سكرتارية الأقسام الداخلية لضمان كفاءة سير العمل.</p>
+<p class="desc-en">Directing and supervising the inpatient secretarial team to ensure smooth operational workflow.</p>
+</div>
+<div class="item">
+<h3>مراجع داخلي</h3>
+<div class="sub-title-en">Internal Auditor</div>
+<div class="date">مستشفى العربي (El Araby Hospital) | نوفمبر 2015 - نوفمبر 2016</div>
+<p class="desc-ar">إجراء التدقيق الداخلي ومراجعة الإجراءات والعمليات الإدارية والمالية لضمان الامتثال والجودة.</p>
+<p class="desc-en">Conducting internal auditing and reviewing financial and administrative processes to guarantee compliance and quality.</p>
+</div>
+<div class="item">
+<h3>قائم بأعمال مشرف سكرتارية الأقسام الداخلية</h3>
+<div class="sub-title-en">Acting Inpatient Secretary Supervisor</div>
+<div class="date">مستشفى العربي (El Araby Hospital) | يناير 2015 - نوفمبر 2015</div>
+<p class="desc-ar">تولّي مسؤوليات الإشراف الإداري على سكرتارية الأقسام الداخلية وتنسيق الخدمات بين الأقسام.</p>
+<p class="desc-en">Assuming administrative supervisory responsibilities for inpatient secretaries and cross-departmental service coordination.</p>
+</div>
+<div class="item">
+<h3>سكرتير قسم داخلي</h3>
+<div class="sub-title-en">Ward Secretary</div>
+<div class="date">مستشفى العربي (El Araby Hospital) | يناير 2014 - يوليو 2015</div>
+<p class="desc-ar">تقديم الدعم الإداري والسكرتارية التنفيذية للأقسام الداخلية والدخول.</p>
+<p class="desc-en">Providing administrative and executive secretarial support for inpatient wards and admissions.</p>
+</div>
+<div class="item">
+<h3>محاسب حسابات مرضى</h3>
+<div class="sub-title-en">Patient Billing Accountant</div>
+<div class="date">مستشفى السلام الدولي (As-Salam International Hospital) | يناير 2010 - سبتمبر 2013</div>
+<p class="desc-ar">مراجعة وتدقيق فواتير المرضى وإدارة إجراءات المحاسبة والدفع.</p>
+<p class="desc-en">Auditing and processing patient bills, revenue cycle management, and payment procedures.</p>
+</div>
+<div class="item">
+<h3>مدخل بيانات</h3>
+<div class="sub-title-en">Data Entry Specialist</div>
+<div class="date">مجموعة المعالي (El Maale Group) | سبتمبر 2007 - أكتوبر 2009</div>
+<p class="desc-ar">إدخال وتحديث البيانات والسجلات الإدارية بدقة على الأنظمة الإلكترونية.</p>
+<p class="desc-en">Accurate entry and management of administrative data and records into digital systems.</p>
+</div>
+</div>
+<!-- Healthcare Quality -->
+<div class="section" id="quality">
+<h2>
+<span>اعتماد الجودة الصحية</span>
+<span class="en-title">Healthcare Quality Accreditation</span>
+</h2>
+<div class="item">
+<h3>JCI - Joint Commission International</h3>
+<p class="desc-ar">إعداد وتأهيل الأقسام للاعتماد الدولي.</p>
+<p class="desc-en">Preparation and qualification of hospital departments for international accreditation.</p>
+</div>
+<div class="item">
+<h3>IMS - Integrated Management System</h3>
+<p class="desc-ar">تطبيق نظام الإدارة المتكامل.</p>
+<p class="desc-en">Implementation and auditing of Integrated Management Systems.</p>
+</div>
+</div>
+<!-- Education -->
+<div class="section" id="education">
+<h2>
+<span>التعليم</span>
+<span class="en-title">Education</span>
+</h2>
+<div class="item">
+<h3>بكالوريوس في نظم معلومات الإدارة</h3>
+<div class="sub-title-en">B.Sc. in Management Information Systems (MIS)</div>
+<div class="date">المعهد العالي للدراسات المتطورة بالهرم | Higher Institute for Advanced Studies (Haram) (2005 - 2009)</div>
+</div>
+</div>
+<!-- QR Code -->
+<div class="section" id="qrcode">
+<h2>
+<span>امسح الباركود (QR Code)</span>
+<span class="en-title">Scan QR Code</span>
+</h2>
+<p class="desc-ar" style="text-align: center;">امسح الكود لعرض السيرة الذاتية مباشرة على الهاتف:</p>
+<p class="desc-en" style="text-align: center;">Scan the code to view the online resume on your mobile device:</p>
+<div class="qr-container">
+<img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://fattahwsmi-netizen.github.io/My-c.v/" alt="QR Code">
+</div>
+</div>
+<!-- Contact -->
+<div class="section" id="contact">
+<h2>
+<span>التواصل</span>
+<span class="en-title">Contact Information</span>
+</h2>
+<div class="contact-icons">
+<a href="mailto:fatta.hwsmi@gmail.com">البريد الإلكتروني / Email</a>
+<a href="tel:01151495701">الهاتف / Phone</a>
+</div>
+</div>
+<footer>
+<p>2026 © Mohamed Abdelfattah Mohamed</p>
+</footer>
+</div>
+<script>
+function toggleMenu() {
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+sidebar.classList.toggle('active');
+overlay.classList.toggle('active');
+}
+</script>
 </body>
 </html>
 
