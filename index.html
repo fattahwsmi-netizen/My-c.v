@@ -1,412 +1,84 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohamed Abdelfattah Mohamed - CV / السيرة الذاتية</title>
+<title>استشارات الجودة الصحية - محمد عبد الفتاح</title>
 <style>
-* {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-}
-body {
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-background-color: #0b0b0b;
-color: #d4af37;
-line-height: 1.6;
-padding-top: 60px;
-}
-/* Navbar & Sidebar Menu */
-.navbar {
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-height: 60px;
-background-color: #141414;
-border-bottom: 1px solid #d4af37;
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 0 20px;
-z-index: 1000;
-}
-.nav-title {
-color: #f3e5ab;
-font-size: 1.1rem;
-font-weight: bold;
-}
-.menu-btn {
-background: none;
-border: none;
-color: #d4af37;
-font-size: 1.8rem;
-cursor: pointer;
-}
-.sidebar {
-position: fixed;
-top: 0;
-right: -280px;
-width: 280px;
-height: 100%;
-background-color: #141414;
-border-left: 2px solid #d4af37;
-box-shadow: -5px 0 15px rgba(0,0,0,0.8);
-transition: right 0.3s ease;
-z-index: 1001;
-padding: 20px;
-}
-.sidebar.active {
-right: 0;
-}
-.close-btn {
-background: none;
-border: none;
-color: #d4af37;
-font-size: 1.5rem;
-float: left;
-cursor: pointer;
-}
-.sidebar-menu {
-list-style: none;
-margin-top: 40px;
-}
-.sidebar-menu li {
-margin-bottom: 20px;
-}
-.sidebar-menu a {
-color: #f3e5ab;
-text-decoration: none;
-font-size: 1rem;
-display: block;
-padding: 8px;
-border-bottom: 1px solid #333;
-transition: color 0.2s, background 0.2s;
-}
-.sidebar-menu a:hover {
-color: #0b0b0b;
-background-color: #d4af37;
-border-radius: 4px;
-}
-.overlay {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0,0,0,0.7);
-display: none;
-z-index: 1000;
-}
-.overlay.active {
-display: block;
-}
-/* Container Layout */
-.container {
-max-width: 850px;
-margin: 20px auto;
-background-color: #141414;
-padding: 30px;
-border-radius: 12px;
-border: 1px solid #d4af37;
-box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
-}
-header {
-text-align: center;
-margin-bottom: 30px;
-border-bottom: 2px solid #d4af37;
-padding-bottom: 20px;
-}
-h1 {
-color: #f3e5ab;
-font-size: 2.2rem;
-margin-bottom: 6px;
-}
-.en-name {
-color: #d4af37;
-font-size: 1.3rem;
-margin-bottom: 10px;
-}
-.title-ar {
-color: #f3e5ab;
-font-size: 1.1rem;
-font-weight: 500;
-}
-.title-en {
-color: #aa944d;
-font-size: 0.95rem;
-margin-bottom: 8px;
-}
-.location {
-color: #aa944d;
-font-size: 0.9rem;
-}
-/* Section Styling */
-.section {
-background-color: #1c1c1c;
-padding: 20px;
-border-radius: 8px;
-margin-bottom: 25px;
-border-right: 4px solid #d4af37;
-scroll-margin-top: 80px;
-}
-h2 {
-color: #f3e5ab;
-font-size: 1.3rem;
-margin-bottom: 15px;
-border-bottom: 1px solid #333;
-padding-bottom: 8px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
-h2 span.en-title {
-font-size: 1rem;
-color: #aa944d;
-font-weight: normal;
-}
-.item {
-margin-bottom: 20px;
-padding-bottom: 15px;
-border-bottom: 1px dashed #333;
-}
-.item:last-child {
-margin-bottom: 0;
-padding-bottom: 0;
-border-bottom: none;
-}
-h3 {
-color: #d4af37;
-font-size: 1.1rem;
-margin-bottom: 2px;
-}
-.sub-title-en {
-color: #aa944d;
-font-size: 0.95rem;
-margin-bottom: 4px;
-font-style: italic;
-}
-.date {
-color: #aa944d;
-font-size: 0.85rem;
-margin-bottom: 8px;
-}
-p.desc-ar {
-color: #cccccc;
-font-size: 0.95rem;
-margin-bottom: 4px;
-}
-p.desc-en {
-color: #999999;
-font-size: 0.88rem;
-direction: ltr;
-text-align: right;
-}
-/* QR Code & Contact */
-.qr-container {
-text-align: center;
-margin-top: 15px;
-}
-.qr-code {
-width: 150px;
-height: 150px;
-border: 3px solid #d4af37;
-border-radius: 8px;
-padding: 5px;
-background-color: #ffffff;
-}
-.contact-icons {
-display: flex;
-justify-content: center;
-gap: 25px;
-margin-top: 15px;
-}
-.contact-icons a {
-color: #d4af37;
-text-decoration: none;
-font-size: 1rem;
-transition: color 0.3s;
-}
-.contact-icons a:hover {
-color: #f3e5ab;
-}
-footer {
-text-align: center;
-padding: 15px 0;
-color: #aa944d;
-font-size: 0.85rem;
-}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Tahoma,Arial,sans-serif;background:#f4f6fa;color:#1a2a44;line-height:1.8}
+header{background:#12284c;color:#fff;text-align:center;padding:48px 20px}
+header h1{font-size:28px;margin-bottom:8px}
+header p{opacity:.85}
+main{max-width:800px;margin:auto;padding:24px 16px}
+section{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+h2{color:#12284c;border-right:4px solid #12284c;padding-right:10px;margin-bottom:12px}
+h3{margin-top:12px;color:#1d4a8a}
+ul,ol{padding-right:22px}
+.btn{display:inline-block;background:#25d366;color:#fff;text-decoration:none;padding:12px 24px;border-radius:8px;margin:6px;font-weight:bold}
+.btn.mail{background:#12284c}
+.center{text-align:center}
+footer{text-align:center;padding:20px;font-size:14px;color:#667}
 </style>
 </head>
 <body>
-<!-- Header Navigation -->
-<nav class="navbar">
-<div class="nav-title">محمد عبد الفتاح | CV</div>
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
-</nav>
-<!-- Sidebar Overlay & Drawer -->
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-<div class="sidebar" id="sidebar">
-<button class="close-btn" onclick="toggleMenu()">×</button>
-<ul class="sidebar-menu">
-<li><a href="#experience" onclick="toggleMenu()">الخبرات العملية / Work Experience</a></li>
-<li><a href="#quality" onclick="toggleMenu()">اعتماد الجودة / Accreditation</a></li>
-<li><a href="#education" onclick="toggleMenu()">التعليم / Education</a></li>
-<li><a href="#qrcode" onclick="toggleMenu()">الباركود / QR Code</a></li>
-<li><a href="#contact" onclick="toggleMenu()">التواصل / Contact</a></li>
-</ul>
-</div>
-<div class="container">
 <header>
-<h1>محمد عبد الفتاح محمد</h1>
-<div class="en-name">Mohamed Abdelfattah Mohamed</div>
-<div class="title-ar">مدير الإدارة العامة وخبير تشغيل المستشفيات والجودة</div>
-<div class="title-en">General Administration Director & Hospital Operations / Quality Expert</div>
-<div class="location">القاهرة، مصر | Cairo, Egypt</div>
+<h1>عرض خدمات استشارات الجودة الصحية</h1>
+<p>محمد عبد الفتاح محمد | مدير إدارة عامة وخبير تشغيل المستشفيات والجودة الصحية | القاهرة، مصر</p>
 </header>
-<!-- Work Experience -->
-<div class="section" id="experience">
-<h2>
-<span>الخبرات العملية</span>
-<span class="en-title">Work Experience</span>
-</h2>
-<div class="item">
-<h3>مدير الإدارة العامة</h3>
-<div class="sub-title-en">General Administration Director</div>
-<div class="date">مستشفى بهية (Baheya Hospital) | 2020 - متوقف عن العمل / On Leave</div>
-<p class="desc-ar">قيادة وإشراف شامل على كافة العمليات الإدارية بالمستشفى.</p>
-<p class="desc-en">Comprehensive leadership and oversight of all administrative operations within the hospital.</p>
-</div>
-<div class="item">
-<h3>مدير سكرتارية الأقسام الداخلية</h3>
-<div class="sub-title-en">Inpatient Secretary Manager</div>
-<div class="date">مستشفى بهية (Baheya Hospital) | يناير 2020 - ديسمبر 2020</div>
-<p class="desc-ar">إدارة وتنظيم كافة أعمال السكرتارية للأقسام الداخلية بالمستشفى.</p>
-<p class="desc-en">Managing and organizing all secretarial operations for inpatient departments.</p>
-</div>
-<div class="item">
-<h3>أخصائي الموارد البشرية</h3>
-<div class="sub-title-en">Human Resources Specialist (HR Specialist)</div>
-<div class="date">مستشفى عيادات القطامية (Kattameya Clinic Hospital) | يناير 2019 - ديسمبر 2019</div>
-<p class="desc-ar">إدارة وتطوير عمليات الموارد البشرية وشؤون العاملين بالقطاع الإداري والطبي.</p>
-<p class="desc-en">Managing and developing HR operations and personnel management across medical and administrative sectors.</p>
-</div>
-<div class="item">
-<h3>مشرف سكرتارية الأقسام الداخلية</h3>
-<div class="sub-title-en">Inpatient Secretary Supervisor</div>
-<div class="date">مستشفى دار الفؤاد (Dar El Fouad Hospital) | يناير 2018 - ديسمبر 2018</div>
-<p class="desc-ar">الإشراف على متابعة وتنظيم عمل سكرتارية الأقسام الداخلية.</p>
-<p class="desc-en">Supervising and organizing the workflow of inpatient ward secretarial teams.</p>
-</div>
-<div class="item">
-<h3>مشرف سكرتارية الأقسام الداخلية</h3>
-<div class="sub-title-en">Inpatient Secretary Supervisor</div>
-<div class="date">مستشفى الكاتب (El Kateb Hospital) | ديسمبر 2017 - يناير 2018</div>
-<p class="desc-ar">متابعة وتوجيه فريق سكرتارية الأقسام الداخلية لضمان كفاءة سير العمل.</p>
-<p class="desc-en">Directing and supervising the inpatient secretarial team to ensure smooth operational workflow.</p>
-</div>
-<div class="item">
-<h3>مراجع داخلي</h3>
-<div class="sub-title-en">Internal Auditor</div>
-<div class="date">مستشفى العربي (El Araby Hospital) | نوفمبر 2015 - نوفمبر 2016</div>
-<p class="desc-ar">إجراء التدقيق الداخلي ومراجعة الإجراءات والعمليات الإدارية والمالية لضمان الامتثال والجودة.</p>
-<p class="desc-en">Conducting internal auditing and reviewing financial and administrative processes to guarantee compliance and quality.</p>
-</div>
-<div class="item">
-<h3>قائم بأعمال مشرف سكرتارية الأقسام الداخلية</h3>
-<div class="sub-title-en">Acting Inpatient Secretary Supervisor</div>
-<div class="date">مستشفى العربي (El Araby Hospital) | يناير 2015 - نوفمبر 2015</div>
-<p class="desc-ar">تولّي مسؤوليات الإشراف الإداري على سكرتارية الأقسام الداخلية وتنسيق الخدمات بين الأقسام.</p>
-<p class="desc-en">Assuming administrative supervisory responsibilities for inpatient secretaries and cross-departmental service coordination.</p>
-</div>
-<div class="item">
-<h3>سكرتير قسم داخلي</h3>
-<div class="sub-title-en">Ward Secretary</div>
-<div class="date">مستشفى العربي (El Araby Hospital) | يناير 2014 - يوليو 2015</div>
-<p class="desc-ar">تقديم الدعم الإداري والسكرتارية التنفيذية للأقسام الداخلية والدخول.</p>
-<p class="desc-en">Providing administrative and executive secretarial support for inpatient wards and admissions.</p>
-</div>
-<div class="item">
-<h3>محاسب حسابات مرضى</h3>
-<div class="sub-title-en">Patient Billing Accountant</div>
-<div class="date">مستشفى السلام الدولي (As-Salam International Hospital) | يناير 2010 - سبتمبر 2013</div>
-<p class="desc-ar">مراجعة وتدقيق فواتير المرضى وإدارة إجراءات المحاسبة والدفع.</p>
-<p class="desc-en">Auditing and processing patient bills, revenue cycle management, and payment procedures.</p>
-</div>
-<div class="item">
-<h3>مدخل بيانات</h3>
-<div class="sub-title-en">Data Entry Specialist</div>
-<div class="date">مجموعة المعالي (El Maale Group) | سبتمبر 2007 - أكتوبر 2009</div>
-<p class="desc-ar">إدخال وتحديث البيانات والسجلات الإدارية بدقة على الأنظمة الإلكترونية.</p>
-<p class="desc-en">Accurate entry and management of administrative data and records into digital systems.</p>
-</div>
-</div>
-<!-- Healthcare Quality -->
-<div class="section" id="quality">
-<h2>
-<span>اعتماد الجودة الصحية</span>
-<span class="en-title">Healthcare Quality Accreditation</span>
-</h2>
-<div class="item">
-<h3>JCI - Joint Commission International</h3>
-<p class="desc-ar">إعداد وتأهيل الأقسام للاعتماد الدولي.</p>
-<p class="desc-en">Preparation and qualification of hospital departments for international accreditation.</p>
-</div>
-<div class="item">
-<h3>IMS - Integrated Management System</h3>
-<p class="desc-ar">تطبيق نظام الإدارة المتكامل.</p>
-<p class="desc-en">Implementation and auditing of Integrated Management Systems.</p>
-</div>
-</div>
-<!-- Education -->
-<div class="section" id="education">
-<h2>
-<span>التعليم</span>
-<span class="en-title">Education</span>
-</h2>
-<div class="item">
-<h3>بكالوريوس في نظم معلومات الإدارة</h3>
-<div class="sub-title-en">B.Sc. in Management Information Systems (MIS)</div>
-<div class="date">المعهد العالي للدراسات المتطورة بالهرم | Higher Institute for Advanced Studies (Haram) (2005 - 2009)</div>
-</div>
-</div>
-<!-- QR Code -->
-<div class="section" id="qrcode">
-<h2>
-<span>امسح الباركود (QR Code)</span>
-<span class="en-title">Scan QR Code</span>
-</h2>
-<p class="desc-ar" style="text-align: center;">امسح الكود لعرض السيرة الذاتية مباشرة على الهاتف:</p>
-<p class="desc-en" style="text-align: center;">Scan the code to view the online resume on your mobile device:</p>
-<div class="qr-container">
-<img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://fattahwsmi-netizen.github.io/My-c.v/" alt="QR Code">
-</div>
-</div>
-<!-- Contact -->
-<div class="section" id="contact">
-<h2>
-<span>التواصل</span>
-<span class="en-title">Contact Information</span>
-</h2>
-<div class="contact-icons">
-<a href="mailto:fatta.hwsmi@gmail.com">البريد الإلكتروني / Email</a>
-<a href="tel:01151495701">الهاتف / Phone</a>
-</div>
-</div>
-<footer>
-<p>2026 © Mohamed Abdelfattah Mohamed</p>
-</footer>
-</div>
-<script>
-function toggleMenu() {
-const sidebar = document.getElementById('sidebar');
-const overlay = document.getElementById('overlay');
-sidebar.classList.toggle('active');
-overlay.classList.toggle('active');
-}
-</script>
+<main>
+<section>
+<h2>نبذة عني</h2>
+<p>خبرة تزيد عن ١٥ سنة في تشغيل وإدارة المستشفيات، بدأت من الحسابات والسكرتارية والموارد البشرية والمراجعة الداخلية، ووصلت لمنصب مدير الإدارة العامة. اشتغلت في مستشفيات كبيرة منها بهية ودار الفؤاد والعربي والسلام الدولي، فبفهم تحديات المنشآت الطبية من جوه.</p>
+</section>
+<section>
+<h2>الخدمات المقدمة</h2>
+<h3>١. التأهيل لاعتماد JCI</h3>
+<p>إعداد وتأهيل الأقسام والمنشأة للحصول على الاعتماد الدولي من Joint Commission International.</p>
+<h3>٢. تطبيق نظم الأيزو (ISO) ونظام الإدارة المتكامل IMS</h3>
+<p>تطبيق ومراجعة نظم الأيزو ونظم الإدارة المتكاملة داخل المستشفى أو المركز الطبي، مناسب للمنشآت الكبيرة والصغيرة.</p>
+<h3>٣. تحسين العمليات التشغيلية</h3>
+<p>مراجعة الإجراءات الإدارية والتشغيلية، وتحديد نقاط الضعف، ووضع حلول عملية لرفع الكفاءة.</p>
+<h3>٤. التدقيق الداخلي والامتثال</h3>
+<p>مراجعة العمليات الإدارية والمالية لضمان الالتزام بالمعايير والجودة.</p>
+<h3>٥. التأهيل لاعتماد GAHAR</h3>
+<p>تجهيز المستشفيات والمراكز الطبية والعيادات والمعامل لمعايير الهيئة العامة للاعتماد والرقابة الصحية في مصر.</p>
+</section>
+<section>
+<h2>ليه تختارني؟</h2>
+<ul>
+<li>خبرة عملية حقيقية في مستشفيات كبرى</li>
+<li>فهم كامل للجانب الإداري والتشغيلي والمالي</li>
+<li>خبرة مباشرة في التجهيز للاعتماد الدولي</li>
+<li>بكالوريوس في نظم معلومات الإدارة</li>
+</ul>
+</section>
+<section>
+<h2>إنجازات فعلية</h2>
+<ul>
+<li>التجهيز لاعتماد JCI في مستشفى السلام الدولي (مرتين)</li>
+<li>التجهيز لاعتماد JCI في المستشفى العربي (مرتين)، والمشاركة في السوفت أوبنينج لفرع العربي بالمنوفية</li>
+<li>التجهيز لاعتماد JCI في مستشفى دار الفؤاد مدينة نصر (مرتين)، والمشاركة في السوفت أوبنينج</li>
+<li>التجهيز لاعتماد JCI في مستشفى بهية (مرتين)</li>
+<li>الحصول على الاعتماد في مستشفى بهية بنتيجة ناجحة</li>
+</ul>
+</section>
+<section>
+<h2>طريقة العمل</h2>
+<ol>
+<li><b>تقييم مبدئي:</b> مراجعة الوضع الحالي للمنشأة وتحديد الفجوات.</li>
+<li><b>خطة عمل:</b> خطوات واضحة وجدول زمني للتجهيز والتطبيق.</li>
+<li><b>تنفيذ ومتابعة:</b> مرافقة الفريق حتى الوصول للاعتماد.</li>
+</ol>
+<p>التكلفة تُحدد حسب حجم المنشأة ونطاق العمل بعد جلسة تقييم مبدئي.</p>
+</section>
+<section class="center">
+<h2>للتواصل</h2>
+<a class="btn" href="https://wa.me/201151495701">واتساب</a>
+<a class="btn mail" href="mailto:fattahwsmi@gmail.com">إيميل</a>
+<a class="btn mail" href="https://fattahwsmi-netizen.github.io/My-c.v/">السيرة الذاتية</a>
+</section>
+</main>
+<footer>© محمد عبد الفتاح محمد</footer>
 </body>
 </html>
-
